@@ -7,11 +7,15 @@ import WebPage from './pages/WebPage'
 import HesticaPage from './pages/HesticaPage'
 import PethratonPage from './pages/PethratonPage'
 import DetailPage from './pages/DetailPage'
+import ChatPage from './pages/ChatPage'
 import Loading from './pages/Loading'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
+
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 
 
@@ -31,6 +35,8 @@ function SettingsScreen() {
 }
 
 const Tab = createBottomTabNavigator();
+
+
 
 export default function App() {
   console.disableYellowBox = true;
@@ -74,7 +80,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="About" component={DetailPage} />
-        <Tab.Screen name="Chat" component={WebPage} />
+        <Tab.Screen name="Chat" component={ChatPage} />
         <Tab.Screen name="Hestica" component={HesticaPage} />
         <Tab.Screen name="Pethraton" component={PethratonPage} />
         <Tab.Screen name="Setting" component={SettingsScreen} />
