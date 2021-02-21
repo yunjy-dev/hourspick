@@ -1,6 +1,7 @@
 import React from 'react';
 import main from './assets/main.png';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import WebPage from './pages/WebPage'
 import HesticaPage from './pages/HesticaPage'
@@ -39,16 +40,19 @@ export default function App() {
   // return (<DetailPage/>);
   return (
     <NavigationContainer>
+      <StatusBar style="light" />
+      <StatusBar style="dark" />
+
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             //https://icons.expo.fyi/
-            if      (route.name === 'Home')        iconName = 'home';
+            if      (route.name === 'Home')        iconName = 'home-outline';
             else if (route.name === 'About')       iconName = 'hourglass';
-            else if (route.name === 'Web')         iconName = 'browsers';
+            else if (route.name === 'Chat')        iconName = 'chatbox-outline';
             else if (route.name === 'Hestica')     iconName = 'browsers';
-            else if (route.name === 'Pethraton')   iconName = 'browsers';
+            else if (route.name === 'Pethraton')   iconName = 'browsers-outline';
             else if (route.name === 'Setting')     iconName = 'settings';
             return (<Ionicons name={iconName} size={size} color={color} />);
           }
@@ -60,7 +64,7 @@ export default function App() {
       >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="About" component={DetailPage} />
-      <Tab.Screen name="Web" component={WebPage} />
+      <Tab.Screen name="Chat" component={WebPage} />
       <Tab.Screen name="Hestica" component={HesticaPage} />
       <Tab.Screen name="Pethraton" component={PethratonPage} />
       <Tab.Screen name="Setting" component={SettingsScreen} />
