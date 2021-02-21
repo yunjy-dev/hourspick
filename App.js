@@ -3,6 +3,7 @@ import main from './assets/main.png';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+import HomePage from './pages/HomePage'
 import WebPage from './pages/WebPage'
 import HesticaPage from './pages/HesticaPage'
 import PethratonPage from './pages/PethratonPage'
@@ -78,7 +79,7 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomePage} />
         <Tab.Screen name="About" component={DetailPage} />
         <Tab.Screen name="Chat" component={ChatPage} />
         <Tab.Screen name="Hestica" component={HesticaPage} />
