@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import main from './assets/main.png';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -7,10 +7,12 @@ import WebPage from './pages/WebPage'
 import HesticaPage from './pages/HesticaPage'
 import PethratonPage from './pages/PethratonPage'
 import DetailPage from './pages/DetailPage'
+import Loading from './pages/Loading'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
+
 
 
 function HomeScreen() {
@@ -32,13 +34,21 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   console.disableYellowBox = true;
+
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout( () => {
+        setLoading(false);
+      }, 1000)
+  }, [])
+
   //return 구문 밖에서는 슬래시 두개 방식으로 주석
 
   // return (<ScrollView style={styles.container}>
   //   <Text style={styles.title}>제목</Text>
   // </ScrollView>);
   // return (<DetailPage/>);
-  return (
+  return (loading ? <Loading /> :
     <NavigationContainer>
       <StatusBar style="light" />
       <StatusBar style="dark" />
@@ -48,26 +58,26 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             //https://icons.expo.fyi/
-            if      (route.name === 'Home')        iconName = 'home-outline';
-            else if (route.name === 'About')       iconName = 'hourglass';
-            else if (route.name === 'Chat')        iconName = 'chatbox-outline';
-            else if (route.name === 'Hestica')     iconName = 'browsers';
-            else if (route.name === 'Pethraton')   iconName = 'browsers-outline';
-            else if (route.name === 'Setting')     iconName = 'settings';
+            if (route.name === 'Home') iconName = 'home-outline';
+            else if (route.name === 'About') iconName = 'hourglass';
+            else if (route.name === 'Chat') iconName = 'chatbox-outline';
+            else if (route.name === 'Hestica') iconName = 'browsers';
+            else if (route.name === 'Pethraton') iconName = 'browsers-outline';
+            else if (route.name === 'Setting') iconName = 'settings';
             return (<Ionicons name={iconName} size={size} color={color} />);
           }
         })}
-          tabBarOptions = {{
+        tabBarOptions={{
           activeTintColor: '#99F',
           inactiveTintColor: 'gray',
         }}
       >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="About" component={DetailPage} />
-      <Tab.Screen name="Chat" component={WebPage} />
-      <Tab.Screen name="Hestica" component={HesticaPage} />
-      <Tab.Screen name="Pethraton" component={PethratonPage} />
-      <Tab.Screen name="Setting" component={SettingsScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="About" component={DetailPage} />
+        <Tab.Screen name="Chat" component={WebPage} />
+        <Tab.Screen name="Hestica" component={HesticaPage} />
+        <Tab.Screen name="Pethraton" component={PethratonPage} />
+        <Tab.Screen name="Setting" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer >
   );
