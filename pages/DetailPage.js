@@ -33,7 +33,7 @@ const DetailPage = () =>{
     )
 }
 
-export default DetailPages;
+export default DetailPage;
 
 const styles = StyleSheet.create({
     container:{
