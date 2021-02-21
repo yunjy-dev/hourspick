@@ -2,6 +2,9 @@ import React from 'react';
 import main from './assets/main.png';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 
+import WebPage from './pages/WebPage'
+import HesticaPage from './pages/HesticaPage'
+import PethratonPage from './pages/PethratonPage'
 import DetailPage from './pages/DetailPage'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -43,8 +46,10 @@ export default function App() {
             //https://icons.expo.fyi/
             if      (route.name === 'Home')        iconName = 'home';
             else if (route.name === 'About')       iconName = 'hourglass';
-            else if (route.name === 'Browser')     iconName = 'browsers';
-            else if (route.name === 'Setting')    iconName = 'settings';
+            else if (route.name === 'Web')         iconName = 'browsers';
+            else if (route.name === 'Hestica')     iconName = 'browsers';
+            else if (route.name === 'Pethraton')   iconName = 'browsers';
+            else if (route.name === 'Setting')     iconName = 'settings';
             return (<Ionicons name={iconName} size={size} color={color} />);
           }
         })}
@@ -55,7 +60,9 @@ export default function App() {
       >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="About" component={DetailPage} />
-      <Tab.Screen name="Browser" component={SettingsScreen} />
+      <Tab.Screen name="Web" component={WebPage} />
+      <Tab.Screen name="Hestica" component={HesticaPage} />
+      <Tab.Screen name="Pethraton" component={PethratonPage} />
       <Tab.Screen name="Setting" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer >
