@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity,Alert } from 'react-native';
 
-const DetailPage = () =>{
+// const DetailPage = () =>{
+const DetailPage = ({navigation,route}) =>{
 
 
     const tip = {

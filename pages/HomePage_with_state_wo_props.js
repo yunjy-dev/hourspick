@@ -4,9 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'reac
 import data from '../data.json';
 import Card from '../components/Card';
 
-// const HomePage = () => {
-  //navigation, route 딕셔너리를 stackNavigator에서 공유한다.
-const HomePage = ({navigation, route}) => {
+const HomePage = () => {
   console.disableYellowBox = true;
   //return 구문 밖에서는 슬래시 두개 방식으로 주석
 
@@ -17,11 +15,6 @@ const HomePage = ({navigation, route}) => {
 
   useEffect(()=>{
     setTimeout(()=>{
-
-        navigation.setOptions({
-          title:'나만의 꿀팁 Main'
-        });
-
         //꿀팁 데이터로 모두 초기화 준비
         let tipState = data.tip;
         setTipState(tipState);
@@ -31,7 +24,7 @@ const HomePage = ({navigation, route}) => {
 
     },1000)
   },[])
-
+  
 
   //이벤트
   const checkCateState = (category) => {
@@ -55,7 +48,7 @@ const HomePage = ({navigation, route}) => {
       return 구문 안에서는 {슬래시 + * 방식으로 주석
     */
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>나만의 꿀팁 Text </Text>
+      <Text style={styles.title}>나만의 꿀팁</Text>
 			 <Text style={styles.weather}>오늘의 날씨: {todayWeather + '°C ' + todayCondition} </Text>
       <Image style={styles.mainImage} source={main}/>
       <ScrollView style={styles.middleContainer} horizontal indicatorStyle={"white"}>
@@ -71,8 +64,7 @@ const HomePage = ({navigation, route}) => {
          {/* 하나의 카드 영역을 나타내는 View */}
          {
           cateState.map((content,i)=>{
-            // return (<Card content={content} key={i}/>)
-            return (<Card content={content} key={i} navigation={navigation}/>)
+            return (<Card content={content} key={i}/>)
           })
         }
         

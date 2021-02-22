@@ -10,32 +10,53 @@ import PethratonPage from './pages/PethratonPage'
 import DetailPage from './pages/DetailPage'
 import ChatPage from './pages/ChatPage'
 import Loading from './pages/Loading'
+import SettingPage from './pages/SettingPage'
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-const Stack = createStackNavigator();
-
-
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
+// const Stack = createStackNavigator();
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator
+        screenOptions={{
+          headerStyle: {
+              backgroundColor: "#999999",
+              borderBottomColor: "white",
+              shadowColor: "black",
+              height:100
+          },
+          headerTintColor: "#000000",
+          headerBackTitleVisible: false
+      }}
+     >
+     <HomeStack.Screen name="HomePage" component={HomePage} />
+     <HomeStack.Screen name="DetailPage" component={DetailPage} />
+    </HomeStack.Navigator>
+   );
+ }
+
+
+// function HomeScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Home!</Text>
+//     </View>
+//   );
+// }
+// function SettingsScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Settings!</Text>
+//     </View>
+//   );
+// }
+
 
 
 
@@ -79,12 +100,13 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Home" component={HomePage} />
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        {/* <Tab.Screen name="Home" component={HomePage} /> */}
         <Tab.Screen name="About" component={DetailPage} />
         <Tab.Screen name="Chat" component={ChatPage} />
         <Tab.Screen name="Hestica" component={HesticaPage} />
         <Tab.Screen name="Pethraton" component={PethratonPage} />
-        <Tab.Screen name="Setting" component={SettingsScreen} />
+        <Tab.Screen name="Setting" component={SettingPage} />
       </Tab.Navigator>
     </NavigationContainer >
   );
